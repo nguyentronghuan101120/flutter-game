@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../player_progress/player_progress.dart';
@@ -80,7 +80,7 @@ class SettingsScreen extends StatelessWidget {
             _gap,
             WobblyButton(
               onPressed: () {
-                GoRouter.of(context).pop();
+               Navigator.pop(context);
               },
               child: const Text('Back'),
             ),

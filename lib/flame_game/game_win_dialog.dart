@@ -1,5 +1,6 @@
+import 'package:endless_runner/flame_game/game_screen.dart';
+import 'package:endless_runner/level_selection/level_selection_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:nes_ui/nes_ui.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +50,15 @@ class GameWinDialog extends StatelessWidget {
             if (level.number < gameLevels.length) ...[
               NesButton(
                 onPressed: () {
-                  context.go('/play/session/${level.number + 1}');
+                  // context.go('/play/session/${level.number + 1}');
+
+                  //   final level = gameLevels[level.number + 1];
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GameScreen(level: level),
+                      ));
                 },
                 type: NesButtonType.primary,
                 child: const Text('Next level'),
@@ -58,7 +67,13 @@ class GameWinDialog extends StatelessWidget {
             ],
             NesButton(
               onPressed: () {
-                context.go('/play');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LevelSelectionScreen(
+                        key: Key('level selection'),
+                      ),
+                    ));
               },
               type: NesButtonType.normal,
               child: const Text('Level selection'),

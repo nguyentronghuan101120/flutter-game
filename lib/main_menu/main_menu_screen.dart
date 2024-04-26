@@ -1,5 +1,7 @@
+import 'package:endless_runner/level_selection/level_selection_screen.dart';
+import 'package:endless_runner/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../audio/audio_controller.dart';
@@ -54,13 +56,21 @@ class MainMenuScreen extends StatelessWidget {
             WobblyButton(
               onPressed: () {
                 audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LevelSelectionScreen(
+                        key: Key('level selection'),
+                      ),
+                    ));
               },
               child: const Text('Play'),
             ),
             _gap,
             WobblyButton(
-              onPressed: () => GoRouter.of(context).push('/settings'),
+              onPressed: () => const SettingsScreen(
+                key: Key('settings'),
+              ),
               child: const Text('Settings'),
             ),
             _gap,
